@@ -670,7 +670,7 @@ The default from address used in emails. Email definitions that don't specify a 
 I18n settings allow configuring internationalization-related settings. Please refer to [Internationalization](../../i18n.mdx) for more details about how to leverage translations and localized content in your projects.
 
 :::info
-Marten makes use of [crystal-i18n](https://crystal-i18n.github.io/) to handle translations and locales. Further [configuration options](https://crystal-i18n.github.io/configuration.html) are also provided by this shard and can be leveraged by any Marten projects if necessary.
+Marten makes use of [i18n](https://i18n.github.io/) to handle translations and locales. Further [configuration options](https://i18n.github.io/configuration.html) are also provided by this shard and can be leveraged by any Marten projects if necessary.
 :::
 
 The following settings are all available under the `i18n` namespace:
@@ -707,7 +707,7 @@ The specified fallbacks can be:
 
 * a hash or a named tuple defining the chains of fallbacks to use for specific locales.
 * a simple array of fallbacks. In that case, this chain of fallbacked locales will be used as a default for all the available locales when translations are missing.
-* an `I18n::Locale::Fallbacks` object, allowing you to specify a general default fallback array and fallback mappings at the same time (see the [crystal-i18n documentation](https://crystal-i18n.github.io/configuration.html#fallbacks)).
+* an `I18n::Locale::Fallbacks` object, allowing you to specify a general default fallback array and fallback mappings at the same time (see the [i18n documentation](https://i18n.github.io/configuration.html#fallbacks)).
 
 For example:
 
