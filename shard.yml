@@ -13,7 +13,7 @@ dependencies:
   db:
     github: crystal-lang/crystal-db
   i18n:
-    github: i18n/i18n
+    github: crystal-i18n/i18n
   msgpack:
     github: crystal-community/msgpack-crystal
 
