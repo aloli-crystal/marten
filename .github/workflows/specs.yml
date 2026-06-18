@@ -60,7 +60,21 @@ jobs:
     - name: Setup env JSON file
       run: cp .spec.env.json.ci .spec.env.json
     - name: Run tests
-      run: scripts/run_batched_specs
+      run: |
+        # Les specs sont relancées jusqu'à 3 fois : sur ubuntu-22.04 il
+        # subsiste un crash transitoire au lancement d'un lot compilé
+        # (undefined symbol: __libc_start_main, exit 123), surtout côté
+        # postgres. Un vrai échec de test persiste sur les 3 tentatives.
+        for attempt in 1 2 3; do
+          echo "::group::Specs (tentative $attempt)"
+          if scripts/run_batched_specs; then
+            echo "::endgroup::"
+            exit 0
+          fi
+          echo "::endgroup::"
+          echo "::warning::Tentative $attempt échouée, nouvel essai…"
+        done
+        exit 1
       env:
         MARTEN_SPEC_DB_CONNECTION: mariadb
   mysql:
@@ -113,7 +127,21 @@ jobs:
     - name: Setup env JSON file
       run: cp .spec.env.json.ci .spec.env.json
     - name: Run tests
-      run: scripts/run_batched_specs
+      run: |
+        # Les specs sont relancées jusqu'à 3 fois : sur ubuntu-22.04 il
+        # subsiste un crash transitoire au lancement d'un lot compilé
+        # (undefined symbol: __libc_start_main, exit 123), surtout côté
+        # postgres. Un vrai échec de test persiste sur les 3 tentatives.
+        for attempt in 1 2 3; do
+          echo "::group::Specs (tentative $attempt)"
+          if scripts/run_batched_specs; then
+            echo "::endgroup::"
+            exit 0
+          fi
+          echo "::endgroup::"
+          echo "::warning::Tentative $attempt échouée, nouvel essai…"
+        done
+        exit 1
       env:
         MARTEN_SPEC_DB_CONNECTION: mysql
   postgresql:
@@ -162,7 +190,21 @@ jobs:
     - name: Setup env JSON file
       run: cp .spec.env.json.ci .spec.env.json
     - name: Run tests
-      run: scripts/run_batched_specs
+      run: |
+        # Les specs sont relancées jusqu'à 3 fois : sur ubuntu-22.04 il
+        # subsiste un crash transitoire au lancement d'un lot compilé
+        # (undefined symbol: __libc_start_main, exit 123), surtout côté
+        # postgres. Un vrai échec de test persiste sur les 3 tentatives.
+        for attempt in 1 2 3; do
+          echo "::group::Specs (tentative $attempt)"
+          if scripts/run_batched_specs; then
+            echo "::endgroup::"
+            exit 0
+          fi
+          echo "::endgroup::"
+          echo "::warning::Tentative $attempt échouée, nouvel essai…"
+        done
+        exit 1
       env:
         MARTEN_SPEC_DB_CONNECTION: postgresql
   sqlite:
@@ -191,7 +233,21 @@ jobs:
     - name: Setup env JSON file
       run: cp .spec.env.json.ci .spec.env.json
     - name: Run tests
-      run: scripts/run_batched_specs
+      run: |
+        # Les specs sont relancées jusqu'à 3 fois : sur ubuntu-22.04 il
+        # subsiste un crash transitoire au lancement d'un lot compilé
+        # (undefined symbol: __libc_start_main, exit 123), surtout côté
+        # postgres. Un vrai échec de test persiste sur les 3 tentatives.
+        for attempt in 1 2 3; do
+          echo "::group::Specs (tentative $attempt)"
+          if scripts/run_batched_specs; then
+            echo "::endgroup::"
+            exit 0
+          fi
+          echo "::endgroup::"
+          echo "::warning::Tentative $attempt échouée, nouvel essai…"
+        done
+        exit 1
   generated-auth-project:
     runs-on: ubuntu-latest
     strategy:
