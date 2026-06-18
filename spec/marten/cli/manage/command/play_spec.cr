@@ -16,7 +16,10 @@ describe Marten::CLI::Manage::Command::Play do
 
       sleep(Time::Span.new(nanoseconds: 1_000_000_000))
 
-      command.playground_process.try(&.terminate)
+      # Le processus du playground peut s'être déjà arrêté avant ce
+      # terminate (course de timing en CI) ; on ignore alors l'erreur
+      # « No such process » — le test vérifie l'absence d'erreur sur stderr.
+      command.playground_process.try { |process| process.terminate rescue nil }
 
       stderr.rewind.gets_to_end.empty?.should be_true
     end
@@ -35,7 +38,10 @@ describe Marten::CLI::Manage::Command::Play do
 
       sleep(Time::Span.new(nanoseconds: 1_000_000_000))
 
-      command.playground_process.try(&.terminate)
+      # Le processus du playground peut s'être déjà arrêté avant ce
+      # terminate (course de timing en CI) ; on ignore alors l'erreur
+      # « No such process » — le test vérifie l'absence d'erreur sur stderr.
+      command.playground_process.try { |process| process.terminate rescue nil }
 
       stderr.rewind.gets_to_end.empty?.should be_true
     end
@@ -54,7 +60,10 @@ describe Marten::CLI::Manage::Command::Play do
 
       sleep(Time::Span.new(nanoseconds: 1_000_000_000))
 
-      command.playground_process.try(&.terminate)
+      # Le processus du playground peut s'être déjà arrêté avant ce
+      # terminate (course de timing en CI) ; on ignore alors l'erreur
+      # « No such process » — le test vérifie l'absence d'erreur sur stderr.
+      command.playground_process.try { |process| process.terminate rescue nil }
 
       stderr.rewind.gets_to_end.empty?.should be_true
     end
@@ -73,7 +82,10 @@ describe Marten::CLI::Manage::Command::Play do
 
       sleep(Time::Span.new(nanoseconds: 1_000_000_000))
 
-      command.playground_process.try(&.terminate)
+      # Le processus du playground peut s'être déjà arrêté avant ce
+      # terminate (course de timing en CI) ; on ignore alors l'erreur
+      # « No such process » — le test vérifie l'absence d'erreur sur stderr.
+      command.playground_process.try { |process| process.terminate rescue nil }
 
       stderr.rewind.gets_to_end.empty?.should be_true
     end
