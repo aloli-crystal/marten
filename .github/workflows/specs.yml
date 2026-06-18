@@ -99,6 +99,12 @@ jobs:
         sudo apt-get -yqq install mysql-client libmysqlclient-dev libvips libvips-dev --fix-missing
     - name: Create additional DB for MySQL
       run: |
+        # L'image officielle mysql:8.x utilise caching_sha2_password par
+        # défaut, que le driver crystal-mysql ne sait pas négocier sans
+        # TLS. On rebascule le compte root sur mysql_native_password (ce
+        # que faisait l'ancienne image Bitnami via MYSQL_AUTHENTICATION_PLUGIN).
+        mysql -u root -h 127.0.0.1 -P 3307 --password=mysql -e \
+          "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'mysql';"
         mysql -u root -h 127.0.0.1 -P 3307 --password=mysql -e 'create database marten_other_test;'
       env:
         PGPASSWORD: mysql
