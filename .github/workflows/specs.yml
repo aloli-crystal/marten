@@ -187,7 +187,6 @@ jobs:
       run: cp .spec.env.json.ci .spec.env.json
     - name: Run tests
       run: scripts/run_batched_specs
-      env:
   generated-auth-project:
     runs-on: ubuntu-latest
     strategy:
