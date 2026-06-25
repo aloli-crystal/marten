@@ -19,7 +19,7 @@ jobs:
   crystal:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v7
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
@@ -30,15 +30,15 @@ jobs:
   spelling:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v7
     - name: Check spelling
-      uses: crate-ci/typos@v1.40.0
+      uses: crate-ci/typos@v1.47.2
   generated-app:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - uses: crystal-lang/install-crystal@v1
       with:
         crystal: latest
@@ -72,7 +72,7 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - uses: crystal-lang/install-crystal@v1
       with:
         crystal: latest
@@ -106,7 +106,7 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
     - uses: crystal-lang/install-crystal@v1
       with:
         crystal: latest
@@ -138,12 +138,12 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v7
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v6
         with:
           node-version: 22.x
       - name: Install shards

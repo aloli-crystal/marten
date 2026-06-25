@@ -89,6 +89,8 @@ This command will scan the table definition corresponding to your current models
 
 ### Options
 
+* `--dry-run` - Shows migrations that would be generated without writing them
+* `--check` - Exits with a non-zero status if model changes require migrations without generating them
 * `--empty` - Creates an empty migration
 
 ### Arguments
@@ -101,6 +103,7 @@ This command will scan the table definition corresponding to your current models
 marten genmigrations             # Generates new migrations for all the installed apps
 marten genmigrations foo         # Generates new migrations for the "foo" app
 marten genmigrations foo --empty # Generates an empty migration for the "foo" app
+marten genmigrations --dry-run   # Shows migrations that would be generated without writing them
 ```
 
 ## `listmigrations`
@@ -137,6 +140,7 @@ The `migrate` command allows you to apply (or unapply) migrations to your databa
 ### Options
 
 * `--fake` - Allows marking migrations as applied or unapplied without actually running them
+* `--check` - Exits with a non-zero status if unapplied migrations exist without applying them
 * `--plan` - Provides a comprehensive overview of the operations that will be performed by the applied or unapplied migrations
 * `--db=ALIAS` - Allows specifying the alias of the database on which migrations will be applied or unapplied (default to `default`)
 
@@ -230,6 +234,10 @@ marten resetmigrations foo # Resets the migrations of the "foo" application
 **Usage:** `marten routes [options]`
 
 Displays all the routes of the application.
+
+### Options
+
+* `-g PATTERN, --grep=PATTERN` - Only display routes whose path or name contains the given substring (case-insensitive)
 
 ## `seed`
 
