@@ -71,14 +71,14 @@ module Marten
           # Returns the name of the table associated with the considered model.
           #
           # Unless explicitly specified, the table name is automatically generated based on the label of the app
-          # associated with the considered model and the class name of the model.
+          # associated with the considered model and the class name of the model. For models associated with the
+          # main application config (flat project structure), no prefix is applied.
           def db_table
             @@db_table ||= String.build do |s|
               unless app_config.label.blank?
                 s << app_config.label.downcase
                 s << '_'
               end
-
               s << (model_name = name.split("::").last.underscore)
             end
           end
