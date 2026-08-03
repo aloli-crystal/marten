@@ -559,7 +559,7 @@ The default from address used in emails. Email definitions that don't specify a 
 I18n settings allow configuring internationalization-related settings. Please refer to [Internationalization](../../i18n.mdx) for more details about how to leverage translations and localized content in your projects.
 
 :::info
-Marten makes use of [crystal-i18n](https://crystal-i18n.github.io/) to handle translations and locales. Further [configuration options](https://crystal-i18n.github.io/configuration.html) are also provided by this shard and can be leveraged by any Marten projects if necessary.
+Marten makes use of [i18n](https://i18n.github.io/) to handle translations and locales. Further [configuration options](https://i18n.github.io/configuration.html) are also provided by this shard and can be leveraged by any Marten projects if necessary.
 :::
 
 The following settings are all available under the `i18n` namespace:
