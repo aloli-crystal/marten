@@ -4,13 +4,13 @@ description: Learn how to leverage translations and localized contents in your M
 sidebar_label: Introduction
 ---
 
-Marten provides integration with [crystal-i18n](https://crystal-i18n.github.io/) to make it possible to leverage translations and localized content in your Marten projects.
+Marten provides integration with [i18n](https://i18n.github.io/) to make it possible to leverage translations and localized content in your Marten projects.
 
 ## Overview
 
 Internationalization and localization are techniques allowing a website to provide content using languages and formats that are adapted to specific audiences.
 
-Marten's internationalization and localization integration rely on the use of the [crystal-i18n](https://crystal-i18n.github.io/) shard, which provides a unified interface allowing to leverage translations and localized contents in a Crystal project. You don't have to manually install this shard in your projects: it is a dependency of the framework itself, and as such, it is automatically installed with Marten.
+Marten's internationalization and localization integration rely on the use of the [i18n](https://i18n.github.io/) shard, which provides a unified interface allowing to leverage translations and localized contents in a Crystal project. You don't have to manually install this shard in your projects: it is a dependency of the framework itself, and as such, it is automatically installed with Marten.
 
 Crystal-I18n makes it easy to configure translations and formats for a specific set of locales. These can be used to perform translation lookups and localization. With this library, translations can be defined through the use of dedicated "loaders" (abstractions that load the translations from a specific source and make them available to the I18n API). For example, translations can be loaded from a YAML file, a JSON file, or something entirely different if needed.
 
@@ -25,15 +25,15 @@ config.i18n.default_locale = :fr
 config.i18n.available_locales = [:en, :fr]
 ```
 
-You can also leverage the [various configuration options](https://crystal-i18n.github.io/configuration.html) that are provided by this shard to further configure how translations should be performed. By doing so you can add more custom I18n backend loaders for example.
+You can also leverage the [various configuration options](https://i18n.github.io/configuration.html) that are provided by this shard to further configure how translations should be performed. By doing so you can add more custom I18n backend loaders for example.
 
 :::tip
-If you need to further [configure Crystal I18n](https://crystal-i18n.github.io/configuration.html), you should probably define a dedicated initializer file under the `config/initializers` folder.
+If you need to further [configure Crystal I18n](https://i18n.github.io/configuration.html), you should probably define a dedicated initializer file under the `config/initializers` folder.
 :::
 
 ## Basic usage
 
-As stated before, Marten relies on the [crystal-i18n](https://crystal-i18n.github.io/) shard, which means that you can also look at the dedicated documentation to learn more about this shard and its configuration options. The following section mainly highlights some of the main features of this library.
+As stated before, Marten relies on the [i18n](https://i18n.github.io/) shard, which means that you can also look at the dedicated documentation to learn more about this shard and its configuration options. The following section mainly highlights some of the main features of this library.
 
 ### Defining translations
 
@@ -77,11 +77,11 @@ I18n.translate("simple.translation")                     # => "This is a simple 
 I18n.translate("simple.interpolation", name: "John Doe") # => "Hello, John Doe!"
 ```
 
-This only scratches the surface of what's possible in terms of translation lookups. You can refer to the [dedicated documentation](https://crystal-i18n.github.io/translation_lookups.html), and more specifically the [interpolations](https://crystal-i18n.github.io/translation_lookups.html#interpolations) and [pluralizations](https://crystal-i18n.github.io/translation_lookups.html#pluralization) sections, to learn about these capabilities.
+This only scratches the surface of what's possible in terms of translation lookups. You can refer to the [dedicated documentation](https://i18n.github.io/translation_lookups.html), and more specifically the [interpolations](https://i18n.github.io/translation_lookups.html#interpolations) and [pluralizations](https://i18n.github.io/translation_lookups.html#pluralization) sections, to learn about these capabilities.
 
 ### Localization
 
-Localization of datetimes and numbers can be achieved through the use of the `I18n#localize` method. In both cases, localization _formats_ need to be defined in your locale files. There are a lot of available formats at your disposal (and all of them are documented in the [related documentation](https://crystal-i18n.github.io/localization.html)). For example, the following translations could be used to format dates in English:
+Localization of datetimes and numbers can be achieved through the use of the `I18n#localize` method. In both cases, localization _formats_ need to be defined in your locale files. There are a lot of available formats at your disposal (and all of them are documented in the [related documentation](https://i18n.github.io/localization.html)). For example, the following translations could be used to format dates in English:
 
 ```yaml
 en:
@@ -153,9 +153,9 @@ The [I18n middleware](../handlers-and-http/reference/middlewares.md#i18n-middlew
 
 ## Limitations
 
-It's important to be aware of a few limitations when working with translations powered by [Crystal I18n](https://crystal-i18n.github.io/) within a Marten project:
+It's important to be aware of a few limitations when working with translations powered by [Crystal I18n](https://i18n.github.io/) within a Marten project:
 
 1. Marten automatically configures YAML translation loaders for applications, and it is not currently possible to use other loader types (such as JSON) presently
 2. Marten does not allow the use of "embedded" translations for applications since those are discovered and configured at runtime: as such application translations are treated as "assets" that must be deployed along with the compiled binary
 
-Note that these restrictions do not prevent the use of custom translation backends if necessary. Please refer to the [related documentation](https://crystal-i18n.github.io/configuration.html#loaders) if you need to use custom translation loaders in your projects.
+Note that these restrictions do not prevent the use of custom translation backends if necessary. Please refer to the [related documentation](https://i18n.github.io/configuration.html#loaders) if you need to use custom translation loaders in your projects.
