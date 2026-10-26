@@ -197,6 +197,8 @@ Initializes a new Marten project or application repository structure.
 
 The `new` management command can be used to create either a new project repository or a new [application](../applications.md) repository. This can be handy when creating new projects, or when creating new applications that are intended to be distributed as dedicated shards, as it ensures you are following Marten's best practices and conventions.
 
+New projects include an `AGENTS.md` file for coding agents. It records the Marten version, links to the matching guides and API, and states how requires, installed apps, migrations, CSRF, and specs work. Projects created with `--edge` link to the in-development guides.
+
 The command allows you to fully define the name of your project or application, and in which folder it should be created.
 
 ### Options
@@ -213,7 +215,7 @@ The command allows you to fully define the name of your project or application, 
 * `name` - The name of the project or app to create
 
 :::tip
-The `type` and `name` arguments are optional: if they are not provided, an interactive mode will be used and the command will prompt the user for inputting the structure type, the app or project name, and whether the auth app should be generated.
+The `type` and `name` arguments are optional when the command runs in a terminal. Interactive mode then prompts for the structure type, the name, the database, and whether an auth app should be generated. When stdin is not a terminal, both arguments are required: otherwise the command prints its usage and exits with status 1.
 :::
 
 ### Examples

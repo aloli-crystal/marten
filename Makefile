@@ -43,7 +43,7 @@ docs_site:
 
 .PHONY: qa
 ## Trigger all quality assurance checks.
-qa: qa_crystal typos
+qa: qa_crystal typos llms_txt_check
 
 .PHONY: qa_crystal
 ## Trigger Crystal quality assurance checks.
@@ -68,6 +68,16 @@ lint:
 ## Trigger spelling checks.
 typos:
 	typos
+
+.PHONY: llms_txt
+## Regenerate docs/static/llms.txt and docs/static/llms-full.txt from the docs sidebar.
+llms_txt:
+	node scripts/generate_llms_txt.js
+
+.PHONY: llms_txt_check
+## Fail when docs/static/llms.txt or docs/static/llms-full.txt does not match the docs.
+llms_txt_check:
+	node scripts/generate_llms_txt.js --check
 
 
 # TESTING

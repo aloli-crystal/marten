@@ -76,21 +76,21 @@ Note that schemas can be used for other things than processing form data. For ex
 ```crystal
 class API::ArticleCreateHandler < Marten::Handler
   def post
-    schema = ArticleCreateHandler.new(request.data)
+    schema = ArticleSchema.new(request.data)
 
     if schema.valid?
       article = Article.new(schema.validated_data)
       article.save!
 
-      created = true
+      json({id: article.id}, status: 201)
     else
-      created = false
+      json({errors: schema.errors}, status: 422)
     end
-
-    json({created: created})
   end
 end
 ```
+
+In the above example, an invalid payload produces a JSON response containing the schema errors. Please refer to [Serializing errors as JSON](./validations.md#serializing-errors-as-json) to learn more about the shape of this payload, and to the [Build a JSON API](../handlers-and-http/how-to/build-a-json-api.md) guide to learn how to list, retrieve, create, update, and delete records.
 
 :::info
 The `#data` method of an HTTP request object returns a hash-like object containing the request data: this object is automatically initialized from any form data or JSON data contained in the request body.
